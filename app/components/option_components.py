@@ -89,3 +89,23 @@ def show_binomial_result(result: dict):
 
         st.markdown("---")
 
+def show_blackscholes_result(result: dict):
+    with st.container():
+        st.markdown("## Option Pricing Result (Black-Scholes Model)")
+        st.markdown("---")
+
+        # Top level summary
+        st.markdown(f"### **Option Price: `{result['price']:.4f}`**")
+
+        st.markdown("#### Input Parameters")
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown(f"**Spot Price (S):** `{result['S']}`")
+            st.markdown(f"**Strike Price (K):** `{result['K']}`")
+            st.markdown(f"**Time to Maturity (T):** `{result['T']}` years")
+            st.markdown(f"**Volatility (σ):** `{result['sigma']}`")
+        with col2:
+            st.markdown(f"**Risk-Free Rate (r):** `{result['r']}`")
+            st.markdown(f"**Option Type:** `{result['option_type'].capitalize()}`")
+
+        st.markdown("---")
