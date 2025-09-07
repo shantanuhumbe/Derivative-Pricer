@@ -7,18 +7,15 @@ def binomial_option_pricing(inputs):
     u = math.exp(inputs["sigma"]* math.sqrt(delta_t))
     d = 1 / u
 
-    inputs["p"] = (math.exp(inputs["r"] * delta_t) - d) / (u - d)
-    inputs["q"] = 1 - inputs["p"]
-    inputs["u"] = u
-    inputs["d"] = d
-    inputs["delta_t"] = delta_t
+    inputs["bi_p"] = (math.exp(inputs["r"] * delta_t) - d) / (u - d)
+    inputs["bi_q"] = 1 - inputs["bi_p"]
+    inputs["bi_u"] = u
+    inputs["bi_d"] = d
+    inputs["bi_delta_t"] = delta_t
 
     cache = {}
     price = binomial_model(inputs, cache)
-
-    inputs["price"] = price
-    inputs["steps"]+= 1
-    inputs["T"] = inputs["T"] * 252
+    inputs["binomial_price"] = price
 
     return inputs
 
@@ -33,8 +30,8 @@ def binomial_model(inputs, cache):
     if inputs["steps"] == 0:
         return payoff(inputs["S"], inputs["K"], inputs["option_type"])
 
-    s_up = inputs["S"] * inputs["u"]
-    s_down = inputs["S"] * inputs["d"]
+    s_up = inputs["S"] * inputs["bi_u"]
+    s_down = inputs["S"] * inputs["bi_d"]
     inputs["steps"] = inputs["steps"] - 1
     inputs_up = inputs.copy()
     inputs_down = inputs.copy()
@@ -43,6 +40,6 @@ def binomial_model(inputs, cache):
     up = binomial_model(inputs_up, cache)
     down = binomial_model(inputs_down, cache)
 
-    price =  (inputs["p"] * up + inputs["q"] * down) * math.exp(-inputs["r"] * inputs["delta_t"])
+    price =  (inputs["bi_p"] * up + inputs["bi_q"] * down) * math.exp(-inputs["r"] * inputs["bi_delta_t"])
     cache[key] = price
     return price
