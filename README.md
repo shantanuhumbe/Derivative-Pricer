@@ -9,7 +9,7 @@ A premium, interactive web application built with Streamlit that calculates opti
 ## 🖥️ Application Preview
 
 <p align="center">
-  <img src="assets/pricer_screenshot.png" alt="Derivative Pricer Screenshot" width="90%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.12);" />
+  <img src="assets/pricer_dashboard.png" alt="Derivative Pricer Dashboard Screenshot" width="90%" style="border-radius: 12px; border: 1px solid rgba(255,255,255,0.12);" />
 </p>
 
 ---
@@ -39,7 +39,7 @@ Derivative-Pricer/
 ├── main.py                 # Streamlit application entrypoint
 ├── requirements.txt        # Package dependencies list
 ├── assets/
-│   └── pricer_screenshot.png # High-fidelity dashboard UI screenshot
+│   └── pricer_dashboard.png # Live dashboard UI screenshot
 ├── engine/                 # Core quantitative pricing engine
 │   ├── options/
 │   │   ├── binomial.py     # Cox-Ross-Rubinstein tree implementation
